@@ -1,6 +1,8 @@
 //Hello world
 
 #include<stdio.h>
+#include"admin.h"
+#include"user.h"
 
 void main(){
 
@@ -8,5 +10,8 @@ void main(){
 
         char *name;
         
-    }
+    };
+add();
+
+
 }
