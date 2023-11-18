@@ -13,7 +13,7 @@ file handling lmao
 #include <stdlib.h>
 #include "loadfile.h"
 
-#define lib_len 64
+#define lib_len 70
 #define db_len 10
 
 int main()
@@ -33,6 +33,7 @@ int main()
 
     load_lib("books.csv", lib); //calling function to load books
     load_user("users.csv", db); //calling function to load users
+
 
     char ename[50], epass[50], action[2];  //variables to store entered names
     printf("Welcome to the Library Interactive Interface! Please enter your credentials to proceed:\n");

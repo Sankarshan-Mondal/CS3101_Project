@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define lib_len 64
+#define lib_len 70
 #define db_len 10
 
 typedef struct proto_book
@@ -21,6 +21,7 @@ typedef struct proto_user
     char role[2]; //a for admin, u for user
     char id[50];
     char pass[50];
+    int b_num;
 }user;
 
 //function to load books
@@ -34,7 +35,7 @@ void load_lib(char *file, book lib[])
     }
     
     //loading book database
-    for(int i = 0; i < lib_len; i++)
+    for(int i = 0; i < 64; i++)
     {
         char *buf = malloc(sizeof(char) * 100); //memory allocated to string in each loop
         fgets(buf, 200, flptr1);
@@ -77,6 +78,7 @@ void load_user(char *file, user db[])
         strcpy(db[i].id, check);
         check = strtok(NULL,"\n"); 
         strcpy(db[i].pass, check);
+        db[i].b_num = 0;    //initialising number of books issued to zero - prevent more than 5 books by one person
         free(bufu);  //memory taken is freed after every iteration - no memory leak
     }
     fclose(flptr2);
@@ -111,7 +113,7 @@ void add(book l[]){
 
     // Checking where non-null data the array ends
     int i, j=0; // j will inally denote the number of books in catalogue
-    for (i=0; i<20; i++){
+    for (i=0; i<lib_len; i++){
         if (strcmp(l[i].id, "\0")!=0){
             j++;
         }
@@ -135,7 +137,7 @@ void del(book l[]){
     printf("Enter the ID of the book you want to remove: ");
     scanf("%s", book_id);
 
-    for (int i=0; i<20; i++){
+    for (int i=0; i<lib_len; i++){
         if (strcmp(l[i].id,book_id)==0){
             fprintf(fptr, "Book %s deleted", l[i].name);
             strcpy(l[i].name, "\0");
@@ -174,7 +176,7 @@ void update(book l[]){
     scanf("%d", &updating.cop_av);
 
      // j will finally denote the number of books in catalogue
-    for (int i = 0; i < 20; i++){
+    for (int i = 0; i < lib_len; i++){
         if (strcmp(l[i].id, updating.id) == 0){
             strcpy(l[i].name, updating.name);
             strcpy(l[i].a_name, updating.a_name);
@@ -185,27 +187,6 @@ void update(book l[]){
     fclose(fptr);
 }
 // See request
-
-//User - Issue book
-void issue(book lib[])
-{
-    char i_book[100];
-    
-    printf("Search for the book here!\nAny keyword related to the book: ");
-    getchar();
-    gets(i_book);
-
-}
-
-//User - return book
-void ret()
-{
-    char id[20];
-
-    // Enter book id
-    printf("Enter the ID of the book you want to return: ");
-    scanf("%[^\n]s", id);
-}
 
 //Combined - Query/Search
 void query(book lib[])
@@ -262,7 +243,7 @@ int user_f(book lib[])
         gets(i_book);
         //printf("%s", i_book);
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < lib_len; i++)
         {
             if (strcmp(lib[i].name, i_book) == 0)
             {
@@ -288,7 +269,7 @@ int user_f(book lib[])
         getchar();
         gets(s_book);
 
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < lib_len; i++)
         {
             if (strcmp(lib[i].name, s_book) == 0)
             {
