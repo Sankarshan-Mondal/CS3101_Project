@@ -224,7 +224,7 @@ void display(book library[])
 }
 
 //defining all the necessary user functions
-int user_f(book lib[])
+int user_f(book lib[], char role_check[])
 {
     char action;
     printf("You are a user or have logged in as a user! Your options are - Issue(I) or Submit(S) or Query(Q) \nEnter your choice: ");
@@ -250,6 +250,13 @@ int user_f(book lib[])
                 if(lib[i].cop_av == 0)
                 {
                     printf("Sorry! That book has zero copies available!\n");
+                    find = 1;
+                    break;
+                }
+                else if (lib[i].cop_av < 3 && strcmp(role_check, "u") == 0)
+                {
+                    printf("Sorry! This book has less than three copies, so only admins can issue it!\n");
+                    find = 1;
                     break;
                 }
                 find = 1;                

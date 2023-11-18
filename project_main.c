@@ -66,7 +66,7 @@ do
                         FILE *fptr;
                         fptr = fopen("records.csv","a");
                         //int f_check = user_f(lib);
-                        if (user_f(lib) == 0)
+                        if (user_f(lib, db[i].role) == 0)
                         {
                             printf("Error! Enter book name correctly\n");
                             break;
@@ -85,7 +85,7 @@ do
                         admin_f(lib); // call to functions
                         } 
                         else if (d_o==0){
-                        user_f(lib); // call to functions
+                        user_f(lib, db[i].role); // call to functions
                         }
                         fprintf(fptr, " by %s\n", ename);
                         fclose(fptr);
