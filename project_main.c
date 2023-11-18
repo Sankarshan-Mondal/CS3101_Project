@@ -37,15 +37,16 @@ int main()
 
     char ename[50], epass[50], action[2];  //variables to store entered names
     printf("Welcome to the Library Interactive Interface! Please enter your credentials to proceed:\n");
-    printf("Enter username: ");
-    scanf("%s", ename);
-    printf("Enter password: ");
-    scanf("%s", epass);
+    
 
 // Main loop in which the system will run
 int agree; // variable for continuation
 do
 {
+    printf("Enter username: ");
+    scanf("%s", ename);
+    printf("Enter password: ");
+    scanf("%s", epass);
     // variable to catch if username is in the db
     int u_find = 0;
 
@@ -58,10 +59,11 @@ do
             {
                 if (strcmp(db[i].pass, epass) == 0)
                 {
-                    printf("Welcome! \n\n");
+                    printf("Welcome! \n");
+                    //printf("%s\n", db[i].role);
                     //display(lib);
 
-                    if (strcmp(db[i].role, "u") == 0)
+                    if (strcmp(db[i].role, "s") == 0 || strcmp(db[i].role, "f") == 0)
                     {
                         FILE *fptr;
                         fptr = fopen("records.csv","a");
@@ -76,17 +78,10 @@ do
                         fclose(fptr);
                     }
                     else if (strcmp(db[i].role, "a") == 0)
-                    {   int d_o = 1;
-                        printf("Do you want to login as admin? (yes=1/no=0): ");    //admin has user and admin priviledges so asking which method of access
-                        scanf("%d", &d_o);
+                    {   
                         FILE *fptr;
                         fptr = fopen("records.csv", "a");
-                        if (d_o==1){
                         admin_f(lib); // call to functions
-                        } 
-                        else if (d_o==0){
-                        user_f(lib, db[i].role); // call to functions
-                        }
                         fprintf(fptr, " by %s\n", ename);
                         fclose(fptr);
                     }
@@ -107,6 +102,13 @@ do
     {
         printf("Sorry, we do not have a record of you in our database.\n");
     }
+    int view;
+    printf("Do you want to see the library books database? (yes=1/no=0): ");
+    scanf("%d", &view);
+    if (view==1){
+        display(lib);
+    }
+
 
     // Condition to continue
     printf("Do you wish to continue? (yes=1/no=0): ");

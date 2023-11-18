@@ -35,7 +35,7 @@ void load_lib(char *file, book lib[])
     }
     
     //loading book database
-    for(int i = 0; i < 64; i++)
+    for(int i = 0; i < 61; i++)
     {
         char *buf = malloc(sizeof(char) * 100); //memory allocated to string in each loop
         fgets(buf, 200, flptr1);
@@ -94,22 +94,18 @@ void add(book l[]){
     printf("Enter the name of the book you want to add: ");
     getchar();  //flushing character so gets works
     gets(adding.name);  //getting input
-    printf("%s\n", adding.name);
 
     // Entering author name
     printf("Enter the name of the author of the book: ");
     gets(adding.a_name); // getting input
-    printf("%s\n", adding.a_name);
 
     // Entering book id
     printf("Enter the ID of the book: ");
     scanf("%s", adding.id);
-    printf("%s\n", adding.id);
 
     // Entering book quantity
     printf("Enter the number of books you are adding: ");
     scanf("%d", &adding.cop_av);
-    printf("%d\n", adding.cop_av);
 
     // Checking where non-null data the array ends
     int i, j=0; // j will inally denote the number of books in catalogue
@@ -227,7 +223,7 @@ void display(book library[])
 int user_f(book lib[], char role_check[])
 {
     char action;
-    printf("You are a user or have logged in as a user! Your options are - Issue(I) or Submit(S) or Query(Q) \nEnter your choice: ");
+    printf("You are a user! Your options are - Issue(I) or Submit(S) or Query(Q) \nEnter your choice: ");
     getchar();
     action = getchar();
     FILE *fptr;
@@ -253,12 +249,13 @@ int user_f(book lib[], char role_check[])
                     find = 1;
                     break;
                 }
-                else if (lib[i].cop_av < 3 && strcmp(role_check, "u") == 0)
+                else if (lib[i].cop_av < 3 && strcmp(role_check, "s") == 0)
                 {
-                    printf("Sorry! This book has less than three copies, so only admins can issue it!\n");
+                    printf("Sorry! This book has less than three copies, so only faculty can issue it!\n");
                     find = 1;
                     break;
                 }
+
                 find = 1;                
                 lib[i].cop_av--;
                 printf("Updated! Remember to return the book in %i days!\n", lib[i].cop_av + 20);
