@@ -1,10 +1,64 @@
-The Alchemist,Paulo Coelho,TAPC672,4
-Beloved,Toni Morrison,BETM947,6
-One Hundred Years of Solitude,Gabriel Garcia Marquez,OHGM283,2
-Norwegian Wood,Haruki Murakami,NWHM992,12
-The Kite Runner,Khaled Hosseini,KRKH357,9
-The Hitchhiker's Guide to the Galaxy,Douglas Adams,HGDA117,10
-The Color Purple,Alice Walker,CPAW956,11
-The Night Circus,Erin Morgenstern,NCEM198,15
-Things Fall Apart,Chinua Achebe,FACA281,13
-The Name of the Wind,Patrick Rothfuss,NWPR285,8
+The Alchemist,Paulo Coelho,TAPC Inc.,TAPC672,4
+Beloved,Toni Morrison,BETM Publications,BETM947,6
+One Hundred Years of Solitude,Gabriel Garcia Marquez,OHGM Books,OHGM283,2
+Norwegian Wood,Haruki Murakami,NWHM Press,NWHM992,12
+The Kite Runner,Khaled Hosseini,KRKH Publishers,KRKH357,9
+The Hitchhiker's Guide to the Galaxy,Douglas Adams,HGDA Publishing,HGDA117,10
+The Color Purple,Alice Walker,CPAW Books,CPAW956,11
+The Night Circus,Erin Morgenstern,NCEM Publications,NCEM198,15
+Things Fall Apart,Chinua Achebe,FACA Press,FACA281,13
+The Name of the Wind,Patrick Rothfuss,NWPR Books,NWPR285,8
+The Great Gatsby,F. Scott Fitzgerald,GFG Publications,GFG123,5
+To Kill a Mockingbird,Harper Lee,TKM Books,TKMB456,7
+1984,George Orwell,Orwell Publications,ORW198,20
+Brave New World,Aldous Huxley,BNH Books,BNHW567,15
+The Catcher in the Rye,J.D. Salinger,CITR Press,CITR789,12
+Pride and Prejudice,Jane Austen,PPJ Publications,PPJ321,8
+The Lord of the Rings,J.R.R. Tolkien,LOTR Books,LOTR654,10
+Harry Potter and the Sorcerer's Stone,J.K. Rowling,HPSS Publications,HPSS777,25
+The Chronicles of Narnia:C.S. Lewis,CON Books,CON888,18
+Moby-Dick,Herman Melville,MDH Publications,MDH432,9
+War and Peace,Leo Tolstoy,WAP Press,WAP555,16
+Anna Karenina,Leo Tolstoy,AK Books,AK678,14
+The Hobbit,J.R.R. Tolkien,THB Publications,THB876,11
+The Grapes of Wrath,John Steinbeck,TGW Publications,TGW987,6
+The Da Vinci Code,Dan Brown,DVC Press,DVC543,13
+The Shining,Stephen King,TSK Books,TSK234,8
+The Girl with the Dragon Tattoo,Stieg Larsson,GDT Publications,GDT876,10
+Gone with the Wind,Margaret Mitchell,GWTW Books,GWTW789,15
+The Stand,Stephen King,TS Publications,TS876,7
+Fahrenheit 451,Ray Bradbury,F451 Books,F451234,12
+Animal Farm,George Orwell,AFM Publications,AFM987,9
+The Odyssey,Homer,TOH Publications,TOH432,18
+The Iliad,Homer,TIH Books,TIH555,14
+The Divine Comedy,Dante Alighieri,TDC Publications,TDC987,11
+Les Misérables,Victor Hugo,LMB Publications,LMB876,13
+Crime and Punishment,Fyodor Dostoevsky,CAP Books,CAP543,9
+One Flew Over the Cuckoo's Nest,Ken Kesey,OFOTCN Publications,OFOTCN234,8
+The Brothers Karamazov,Fyodor Dostoevsky,TBK Publications,TBK876,11
+Frankenstein,Mary Shelley,FS Books,FS789,12
+The Picture of Dorian Gray,Oscar Wilde,PDG Publications,PDG876,10
+The Three Musketeers,Alexandre Dumas,T3M Publications,T3M432,15
+Wuthering Heights,Emily Brontë,WH Publications,WH543,8
+The Art of War,Sun Tzu,AOW Publications,AOW987,20
+The Count of Monte Cristo,Alexandre Dumas,CMC Publications,CMC876,14
+The Scarlet Letter,Nathaniel Hawthorne,SL Publications,SL543,9
+Great Expectations,Charles Dickens,GE Publications,GE234,11
+The Adventures of Sherlock Holmes,Arthur Conan Doyle,ASH Publications,ASH876,12
+The War of the Worlds,H.G. Wells,WW Publications,WW543,10
+Alice's Adventures in Wonderland,Lewis Carroll,AAW Publications,AAW876,15
+Don Quixote,Miguel de Cervantes,DQ Publications,DQ987,13
+The Jungle Book,Rudyard Kipling,JBM Publications,JBM876,8
+The Time Machine,H.G. Wells,TM Publications,TM543,10
+The Invisible Man,H.G. Wells,TIM Publications,TIM234,7
+The Call of the Wild,Jack London,COTW Publications,COTW876,14
+The Old Man and the Sea,Ernest Hemingway,OMS Publications,OMS543,9
+The Hound of the Baskervilles,Arthur Conan Doyle,HOTB Publications,HOTB876,12
+A Tale of Two Cities,Charles Dickens,TTOD Publications,TTOD234,11
+The Wind in the Willows,Kenneth Grahame,WW Publications,WW876,10
+Little Women,Louisa May Alcott,LW Publications,LW543,14
+The Princess Bride,William Goldman,TPB Publications,TPB234,8
+The Secret Garden,Frances Hodgson Burnett,SG Publications,SG987,15
+The Alchemist,Paulo Coelho,TAPC Inc.,TAPC987,10
+Beloved,Toni Morrison,BETM Publications,BETM321,9
+One Hundred Years of Solitude,Gabriel Garcia Marquez,OHGM Publishing House,OHY276,16
