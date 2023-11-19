@@ -19,7 +19,7 @@ file handling lmao
 int main()
 {
     book lib[lib_len];   //creating array to store books (space for extra)
-    user db[db_len]; // create array for users (more space for addition)
+    user db[db_len]; // create array for users
 
     //initialise entire array to null terminator and 0 - shall be useful later
     for (int i = 0; i <= lib_len; i++)
@@ -54,36 +54,40 @@ do
     {
         if (strcmp(db[i].id, ename) == 0)
         {
-            u_find++;
-            for (int p = 0; p < 3; p++)
+            u_find++;   //increment check variable once username is found
+            for (int p = 0; p < 3; p++) //loop to give 3 chances to enter password
             {
-                if (strcmp(db[i].pass, epass) == 0)
+                if (strcmp(db[i].pass, epass) == 0) //checking if password entered is correct
                 {
                     printf("Welcome! \n");
-                    //printf("%s\n", db[i].role);
-                    //display(lib);
+                    int positive;
+                    printf("Do you want to view the catalogue of books? (yes=1/no=0): ");
+                    scanf("%d", &positive);
+                    if (positive==1){
+                    display(lib);
+                    }
 
-                    if (strcmp(db[i].role, "s") == 0 || strcmp(db[i].role, "f") == 0)
+                    if (strcmp(db[i].role, "s") == 0 || strcmp(db[i].role, "f") == 0)   //checking role of user (student or faculty)
                     {
                         FILE *fptr;
-                        fptr = fopen("records.csv","a");
-                        //int f_check = user_f(lib);
-                        if (user_f(lib, db[i].role) == 0)
+                        fptr = fopen("records.csv","a");    //opening file to access records
+
+                        if (user_f(lib, db, i) == 0)   //loop to catch incorrect book name - will now ask user if they want to continue (try again)
                         {
                             printf("Error! Enter book name correctly\n");
                             break;
                         }
-                        //user_f(lib);
+
                         fprintf(fptr, " by %s\n", ename);
-                        fclose(fptr);
+                        fclose(fptr);   //all opened files should be closed
                     }
                     else if (strcmp(db[i].role, "a") == 0)
                     {   
                         FILE *fptr;
                         fptr = fopen("records.csv", "a");
                         admin_f(lib); // call to functions
-                        fprintf(fptr, " by %s\n", ename);
-                        fclose(fptr);
+                        fprintf(fptr, " by %s\n", ename);   //printing name of admin who updated
+                        fclose(fptr);   //all opened files should be closed
                     }
                     break;
                 }
@@ -102,11 +106,13 @@ do
     {
         printf("Sorry, we do not have a record of you in our database.\n");
     }
+
+    //Chance to see the book database
     int view;
     printf("Do you want to see the library books database? (yes=1/no=0): ");
     scanf("%d", &view);
     if (view==1){
-        display(lib);
+        display(lib);   //abstraction of function to see library
     }
 
 

@@ -18,7 +18,7 @@ typedef struct proto_book
 //defining user
 typedef struct proto_user
 {
-    char role[2]; //a for admin, u for user
+    char role[2]; //a for admin, s for student, f for faculty
     char id[50];
     char pass[50];
     int b_num;
@@ -78,7 +78,7 @@ void load_user(char *file, user db[])
         strcpy(db[i].id, check);
         check = strtok(NULL,"\n"); 
         strcpy(db[i].pass, check);
-        db[i].b_num = 0;    //initialising number of books issued to zero - prevent more than 5 books by one person
+        db[i].b_num = 4;    //initialising number of books issued to zero - prevent more than 5 books by one person
         free(bufu);  //memory taken is freed after every iteration - no memory leak
     }
     fclose(flptr2);
@@ -164,7 +164,7 @@ void update(book l[]){
 
     
     // Entering updated author name
-    printf("Enter the updated name of the author of the book: ");
+    printf("Enter the updated author of the book: ");
     scanf("%s", updating.a_name);
 
     // Entering updated book quantity
@@ -208,8 +208,9 @@ void query(book lib[])
 void display(book library[])
 {   
     char id[]="Book ID", name[]="Name_of book", a_name[]="Name of author", pub[] = "Publishing house", cop_av[]="Available copies";
-    printf("%-10s %-40s %-25s %-20s %-3s\n", id, name, a_name, pub, cop_av);
-    for (int i = 0; i < 20; i++)
+    printf("\n%-10s %-40s %-25s %-20s %-3s\n", id, name, a_name, pub, cop_av);
+    printf("\n");
+    for (int i = 0; i < lib_len; i++)
     {
         if (strcmp(library[i].id, "\0") != 0)
         {
@@ -219,11 +220,27 @@ void display(book library[])
     printf("\n");
 }
 
+// view records
+void disp_rec()
+{
+    FILE *fptr;
+    char letters;
+    fptr = fopen("records.csv", "r");
+
+    letters = fgetc(fptr);
+    while (letters != EOF)
+    {
+        printf("%c", letters);
+        letters = fgetc(fptr);
+    }
+    fclose(fptr);
+}
+
 //defining all the necessary user functions
-int user_f(book lib[], char role_check[])
+int user_f(book lib[], user datab[], int c_num)
 {
     char action;
-    printf("You are a user! Your options are - Issue(I) or Submit(S) or Query(Q) \nEnter your choice: ");
+    printf("You are a user! Your options are - Issue(I) or Submit(S) or Query(Q) or Request new book(R) \nEnter your choice: ");
     getchar();
     action = getchar();
     FILE *fptr;
@@ -232,7 +249,15 @@ int user_f(book lib[], char role_check[])
 
     if (action == 'I' || action == 'i')
     {
-        display(lib);
+        printf("%i\n", datab[c_num].b_num);
+        //loop to check number of books with client
+        if (datab[c_num].b_num == 5)
+        {
+            printf("Warning! You already have 5 books issued. Return a book to issue another.\n");
+            return 1;
+        }
+
+        //display(lib);
         char i_book[50];
         printf("Enter the name of the book you wish to issue: ");
         getchar();
@@ -249,15 +274,19 @@ int user_f(book lib[], char role_check[])
                     find = 1;
                     break;
                 }
-                else if (lib[i].cop_av < 3 && strcmp(role_check, "s") == 0)
+                else if (lib[i].cop_av < 3 && strcmp(datab[c_num].role, "s") == 0)
                 {
                     printf("Sorry! This book has less than three copies, so only faculty can issue it!\n");
                     find = 1;
                     break;
                 }
+                else{
+                    datab[c_num].b_num++;
+                }
 
                 find = 1;                
                 lib[i].cop_av--;
+                
                 printf("Updated! Remember to return the book in %i days!\n", lib[i].cop_av + 20);
                 //display(lib);
                 fprintf(fptr, "%s was issued ", lib[i].name);
@@ -292,6 +321,16 @@ int user_f(book lib[], char role_check[])
         find = 1;
     }
 
+    else if (action == 'r' || action == 'R')
+    {
+        char name_b[50];
+        printf("Enter the name of the book you want: ");
+        getchar();
+        gets(name_b);
+        fprintf(fptr, "%s was requested", name_b);
+        find = 1;
+    }
+
     else
     {
         printf("That is not a valid function\n");
@@ -307,7 +346,7 @@ void admin_f(book lib[])
     // FILE *fptr;
     // fptr = fopen("records.csv","a");    
     char action;
-    printf("You are an admin! Your options are - Add(A) or Delete(D) or Update(U)\nEnter your choice: ");
+    printf("You are an admin! Your options are - Add(A) or Delete(D) or Update(U) or See Records(R)\nEnter your choice: ");
     getchar();
     action = getchar();
     if (action == 'A' || action == 'a')
@@ -331,6 +370,12 @@ void admin_f(book lib[])
         //display(lib); 
     }
 
+    if (action == 'R' || action == 'r')
+    {
+        printf("The record log is as follows: \n");
+        disp_rec();
+        //printf("Updated!\n");
+        // display(lib);
+    }
 }
     
-
