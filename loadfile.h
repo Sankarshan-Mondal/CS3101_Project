@@ -346,7 +346,7 @@ void admin_f(book lib[])
     // FILE *fptr;
     // fptr = fopen("records.csv","a");    
     char action;
-    printf("You are an admin! Your options are - Add(A) or Delete(D) or Update(U) or See Records(R)\nEnter your choice: ");
+    printf("You are an admin! Your options are - Add(A) or Delete(D) or Update(U) or See Records(R) or Query(Q)\nEnter your choice: ");
     getchar();
     action = getchar();
     if (action == 'A' || action == 'a')
@@ -376,6 +376,11 @@ void admin_f(book lib[])
         disp_rec();
         //printf("Updated!\n");
         // display(lib);
+    }
+
+    if (action == 'q' || action == 'Q')
+    {
+        query(lib);
     }
 }
     
