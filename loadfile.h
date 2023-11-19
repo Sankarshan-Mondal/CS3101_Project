@@ -120,6 +120,8 @@ void add(book l[]){
     l[j].cop_av = adding.cop_av;
     strcpy(l[j].id, adding.id);
 
+    printf("\nAdding succesful!\n%-10s %-40s %-25s %-25s %-3i\n", l[j].id, l[j].name, l[j].a_name, l[j].publisher,l[j].cop_av);
+
     fprintf(fptr, "New book %s added", adding.name);
     fclose(fptr);
     }
@@ -177,6 +179,9 @@ void update(book l[]){
             strcpy(l[i].name, updating.name);
             strcpy(l[i].a_name, updating.a_name);
             l[i].cop_av = updating.cop_av;
+
+            printf("\nUpdate succesful!\n%-10s %-40s %-25s %-25s %-3i\n", l[i].id, l[i].name, l[i].a_name, l[i].publisher,l[i].cop_av);
+
         }
     }
     fprintf(fptr, "Book %s updated to %s", updating.id, updating.name);
@@ -309,7 +314,6 @@ int user_f(book lib[], user datab[], int c_num)
                 find = 1;
                 lib[i].cop_av++;
                 printf("Updated!\n");
-                //display(lib);
                 fprintf(fptr, "%s was submitted ", lib[i].name);
             }   
         }    
@@ -356,21 +360,21 @@ void admin_f(book lib[])
         //display(lib);
     }
 
-    if (action == 'D' || action == 'd')
+    else if (action == 'D' || action == 'd')
     {
         del(lib);
         printf("Updated!\n");
         //display(lib); 
     }
 
-    if (action == 'U' || action == 'u')
+    else if (action == 'U' || action == 'u')
     {
         update(lib);
         printf("Updated!\n");
         //display(lib); 
     }
 
-    if (action == 'R' || action == 'r')
+    else if (action == 'R' || action == 'r')
     {
         printf("The record log is as follows: \n");
         disp_rec();
@@ -378,9 +382,13 @@ void admin_f(book lib[])
         // display(lib);
     }
 
-    if (action == 'q' || action == 'Q')
+    else if (action == 'q' || action == 'Q')
     {
         query(lib);
+    }
+
+    else{
+        break;
     }
 }
     

@@ -66,6 +66,9 @@ do
                     if (positive==1){
                     display(lib);
                     }
+                    else{
+                        break;
+                    }
 
                     if (strcmp(db[i].role, "s") == 0 || strcmp(db[i].role, "f") == 0)   //checking role of user (student or faculty)
                     {
@@ -114,6 +117,7 @@ do
     if (view==1){
         display(lib);   //abstraction of function to see library
     }
+    
 
 
     // Condition to continue
