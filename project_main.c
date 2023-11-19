@@ -66,6 +66,9 @@ do
                     if (positive==1){
                     display(lib);
                     }
+                    else if(positive==0){
+
+                    }
                     else{
                         break;
                     }
@@ -92,6 +95,15 @@ do
                         fprintf(fptr, " by %s\n", ename);   //printing name of admin who updated
                         fclose(fptr);   //all opened files should be closed
                     }
+                    // Chance to see the book database
+                    int view;
+                    printf("Do you want to see the library books database? (yes=1/no=0): ");
+                    scanf("%d", &view);
+                    if (view == 1)
+                    {
+                        display(lib); // abstraction of function to see library
+                    }
+
                     break;
                 }
                 else
@@ -110,13 +122,6 @@ do
         printf("Sorry, we do not have a record of you in our database.\n");
     }
 
-    //Chance to see the book database
-    int view;
-    printf("Do you want to see the library books database? (yes=1/no=0): ");
-    scanf("%d", &view);
-    if (view==1){
-        display(lib);   //abstraction of function to see library
-    }
     
 
 

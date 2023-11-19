@@ -78,7 +78,7 @@ void load_user(char *file, user db[])
         strcpy(db[i].id, check);
         check = strtok(NULL,"\n"); 
         strcpy(db[i].pass, check);
-        db[i].b_num = 4;    //initialising number of books issued to zero - prevent more than 5 books by one person
+        db[i].b_num = 0;    //initialising number of books issued to zero - prevent more than 5 books by one person
         free(bufu);  //memory taken is freed after every iteration - no memory leak
     }
     fclose(flptr2);
@@ -99,6 +99,10 @@ void add(book l[]){
     printf("Enter the name of the author of the book: ");
     gets(adding.a_name); // getting input
 
+    // Entering author name
+    printf("Enter the name of the publisher of the book: ");
+    gets(adding.publisher); // getting input
+
     // Entering book id
     printf("Enter the ID of the book: ");
     scanf("%s", adding.id);
@@ -117,6 +121,7 @@ void add(book l[]){
     //j is updated
     strcpy(l[j].a_name,adding.a_name);
     strcpy(l[j].name,adding.name);
+    strcpy(l[j].publisher, adding.publisher);
     l[j].cop_av = adding.cop_av;
     strcpy(l[j].id, adding.id);
 
@@ -141,6 +146,7 @@ void del(book l[]){
             strcpy(l[i].name, "\0");
             strcpy(l[i].a_name, "\0");
             strcpy(l[i].id, "\0");
+            strcpy(l[i].publisher, "\0");
             l[i].cop_av = 0;
         }
     }
@@ -162,29 +168,36 @@ void update(book l[]){
 
     // Entering updated book name
     printf("Enter the updated name of the book: ");
-    scanf("%s", updating.name);
+    getchar();         // flushing character so gets works
+    gets(updating.name); // getting input
 
-    
     // Entering updated author name
     printf("Enter the updated author of the book: ");
-    scanf("%s", updating.a_name);
+    gets(updating.a_name);
+
+    // Entering updated author name
+    printf("Enter the updated publisher of the book: ");
+    gets(updating.publisher);
 
     // Entering updated book quantity
     printf("Enter the updated number of copies: ");
     scanf("%d", &updating.cop_av);
 
      // j will finally denote the number of books in catalogue
+    char *old;
     for (int i = 0; i < lib_len; i++){
         if (strcmp(l[i].id, updating.id) == 0){
+            old = l[i].name;
             strcpy(l[i].name, updating.name);
             strcpy(l[i].a_name, updating.a_name);
+            strcpy(l[i].publisher, updating.publisher);
             l[i].cop_av = updating.cop_av;
 
             printf("\nUpdate succesful!\n%-10s %-40s %-25s %-25s %-3i\n", l[i].id, l[i].name, l[i].a_name, l[i].publisher,l[i].cop_av);
 
         }
     }
-    fprintf(fptr, "Book %s updated to %s", updating.id, updating.name);
+    fprintf(fptr, "Book %s updated to %s", old, updating.name);
     fclose(fptr);
 }
 // See request
@@ -254,7 +267,7 @@ int user_f(book lib[], user datab[], int c_num)
 
     if (action == 'I' || action == 'i')
     {
-        printf("%i\n", datab[c_num].b_num);
+        //printf("%i\n", datab[c_num].b_num);
         //loop to check number of books with client
         if (datab[c_num].b_num == 5)
         {
@@ -385,10 +398,11 @@ void admin_f(book lib[])
     else if (action == 'q' || action == 'Q')
     {
         query(lib);
+        FILE *fptr;
+        fptr = fopen("records.csv","a");
+        fprintf(fptr, "Query observed");
+        fclose(fptr);
     }
 
-    else{
-        break;
-    }
 }
     
